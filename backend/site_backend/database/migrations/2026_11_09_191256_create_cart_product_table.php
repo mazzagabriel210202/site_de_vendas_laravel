@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cart_id')->constrained('carts')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->integer('quantidade')->default(1); // Controla quantos itens desse produto estão no carrinho
+            $table->integer('quantidade');
+            $table->decimal('preco_unitario', 10, 2);
             $table->timestamps();
         });
     }

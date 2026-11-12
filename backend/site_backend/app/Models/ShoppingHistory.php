@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,15 +14,19 @@ class ShoppingHistory extends Model
 
     protected $fillable = [
         'client_id',
-        'total',
-        'status',
+        'product_id',
+        'quantidade',
+        'preco_unitario',
+        'subtotal',
     ];
 
-    /**
-     * Relacionamento inverso: O histórico de compras pertence a um Client.
-     */
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
     }
 }

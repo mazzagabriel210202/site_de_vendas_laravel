@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Product;
+use App\Models\Cart;
 use App\Policies\ProductPolicy;
+use App\Policies\CartPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Registro explícito da Policy de Produtos (Opcional, mas garante rastreabilidade)
+        // Registro explícito das Policies da aplicação
         Gate::policy(Product::class, ProductPolicy::class);
+        Gate::policy(Cart::class, CartPolicy::class);
     }
 }

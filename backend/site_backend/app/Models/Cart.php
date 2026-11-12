@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,12 +26,12 @@ class Cart extends Model
     }
 
     /**
-     * Relacionamento: Um carrinho possui muitos produtos (1 ou N).
+     * Relacionamento: Um carrinho possui muitos produtos (1 para N através da pivot).
      */
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'cart_product')
-                    ->withPivot('quantidade')
+                    ->withPivot(['quantidade', 'preco_unitario'])
                     ->withTimestamps();
     }
 }
